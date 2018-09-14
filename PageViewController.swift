@@ -8,8 +8,8 @@
 
 import UIKit
 
-class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
-    
+class PageViewController: UIPageViewController, UIPageViewControllerDataSource, testDelegate {
+
     // シーン移動の際に渡される値
     var selectedVC:Int = 0            // viewControllerで押されたセルのindex
     var selectedSVC: Int = 0    // SecondViewControllerで押されたセルのindex
@@ -22,7 +22,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
     var currentVC:UIViewController!
     
     // ページングするviewControllerを格納する配列のプロパティ宣言
-    var contentVCs = [UIViewController]()
+    var contentVCs = [PageContentViewController]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,9 +55,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
             settingVC.selectedVC = selectedVC
             settingVC.arrayLength = arrayLength
             settingVC.soundSetting = soundSetting
-            
-            let currentVC = contentVCs[pageIndex]
-            settingVC.testdelegate = currentVC as? testDelegate
+            settingVC.testdelegate = self
         }
     }
     
@@ -83,6 +81,13 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
         pageIndex = index + 1
         
         return nextVC
+    }
+    
+    // testDelegate
+    func test(soundSetting: Int) {
+        for contents in contentVCs {
+            contents.setBackGroundColor(soundSetting: soundSetting)
+        }
     }
     
 }

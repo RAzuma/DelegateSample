@@ -9,9 +9,7 @@
 import UIKit
 
 protocol testDelegate: class {
-    var soundSetting:Int { get set }
-    func test1()
-    func test2(soundSetting: Int)
+    func test(soundSetting: Int)
 }
 
 class SettingViewController: UIViewController {
@@ -64,14 +62,8 @@ class SettingViewController: UIViewController {
     // セグエで遷移した戻り
     @objc func backDMVC(sender: AnyObject) {
         
-        let nav = self.presentingViewController  as! UINavigationController
-        let pageViewController = nav.topViewController as! PageViewController
-        pageViewController.soundSetting = soundSetting
-        
+        self.testdelegate?.test(soundSetting: soundSetting)
         self.dismiss(animated: true, completion: nil)
         
-        self.testdelegate?.soundSetting = soundSetting
-        self.testdelegate?.test1()
-        self.testdelegate?.test2(soundSetting: soundSetting)
     }
 }

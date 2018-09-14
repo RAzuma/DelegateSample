@@ -7,7 +7,7 @@
 //
 
 import UIKit
-class PageContentViewController: UIViewController, testDelegate {
+class PageContentViewController: UIViewController {
     
     //シーン移動の際に設定されるデータ
     var pageIndex:Int = 0
@@ -21,19 +21,15 @@ class PageContentViewController: UIViewController, testDelegate {
         
     }
     
-    func test1() {
-        self.view.backgroundColor = UIColor.yellow
-        print("test1メソッドに入った: \(soundSetting)")
-    }
-    
-    func test2(soundSetting: Int) {
+    func setBackGroundColor(soundSetting: Int) {
         if soundSetting == 0 {
             self.view.backgroundColor = UIColor.red
-            print("test2メソッドに入ったsoundSetting: \(soundSetting)")
         }
         if soundSetting == 1 {
             self.view.backgroundColor = UIColor.brown
-            print("test2メソッドに入ったsoundSetting: \(soundSetting)")
+        }
+        if soundSetting == 2 {
+            self.view.backgroundColor = UIColor.yellow
         }
     }
 }
